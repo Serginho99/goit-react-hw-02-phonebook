@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import AddContactForm from './form/AddContactForm';
 import { nanoid } from 'nanoid';
 import ContactsList from './contactsList/ContactsList';
+import { Notify } from 'notiflix/build/notiflix-notify-aio';
 export default class App extends Component {
   state = {
     contacts: [
@@ -14,6 +15,11 @@ export default class App extends Component {
   };
 
   addContact = data => {
+    if (this.isDuplicateContact(data)) {
+      return Notify.info(
+        `${data.name}: ${data.number} is already on your list`
+      );
+    }
     const contact = {
       id: nanoid(),
       ...data,
@@ -45,10 +51,18 @@ export default class App extends Component {
     });
   };
 
+  isDuplicateContact({ name, number }) {
+    const { contacts } = this.state;
+    return contacts.find(
+      contact => contact.name === name && contact.number === number
+    );
+  }
+
   render() {
     const { filter } = this.state;
-    const { addContact, changeFilter, removeContact } = this;
-    const visibleContacts = this.getVisibleContacts();
+    const { addContact, changeFilter, removeContact, getVisibleContacts } =
+      this;
+    const visibleContacts = getVisibleContacts();
     return (
       <>
         <AddContactForm onSubmit={addContact} />
