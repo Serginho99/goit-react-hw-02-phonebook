@@ -17,7 +17,20 @@ export const Text = styled.p`
 `;
 
 export const BtnDelete = styled.button`
-  display: block;
+  background-color: transparent;
+  border: none;
+  height: 30px;
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  color: #757575;
+  transition: transform 250ms;
+
+  :hover {
+    color: black;
+    transform: scale(1.3);
+  }
+  /* display: block;
   width: 50px;
   height: 25px;
   font-family: inherit;
@@ -32,5 +45,5 @@ export const BtnDelete = styled.button`
   :hover {
     color: #2196f3;
     background-color: lightblue;
-  }
+  } */
 `;

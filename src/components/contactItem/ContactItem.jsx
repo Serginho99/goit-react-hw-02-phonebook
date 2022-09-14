@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { RiDeleteBinLine } from 'react-icons/ri';
 import { Item, Text, BtnDelete } from './ContactItem.styled';
 
 export default function ContactItem({ name, number, removeContact, id }) {
@@ -8,7 +9,7 @@ export default function ContactItem({ name, number, removeContact, id }) {
         {name}: {number}
       </Text>
       <BtnDelete type="button" onClick={() => removeContact(id)}>
-        Delete
+        <RiDeleteBinLine />
       </BtnDelete>
     </Item>
   );
