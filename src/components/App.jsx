@@ -3,6 +3,8 @@ import AddContactForm from './form/AddContactForm';
 import { nanoid } from 'nanoid';
 import ContactsList from './contactsList/ContactsList';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
+import Section from './section/Section';
+
 export default class App extends Component {
   state = {
     contacts: [
@@ -65,14 +67,17 @@ export default class App extends Component {
     const visibleContacts = getVisibleContacts();
     return (
       <>
-        <AddContactForm onSubmit={addContact} />
-
-        <ContactsList
-          contacts={visibleContacts}
-          value={filter}
-          onChange={changeFilter}
-          deleteContact={removeContact}
-        />
+        <Section>
+          <AddContactForm onSubmit={addContact} />
+        </Section>
+        <Section>
+          <ContactsList
+            contacts={visibleContacts}
+            value={filter}
+            onChange={changeFilter}
+            deleteContact={removeContact}
+          />
+        </Section>
       </>
     );
   }

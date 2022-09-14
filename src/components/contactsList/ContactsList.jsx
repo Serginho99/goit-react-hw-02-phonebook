@@ -1,5 +1,7 @@
 import PropTypes from 'prop-types';
 import ContactItem from 'components/contactItem/ContactItem';
+import { TitleList, SearchInput, ContactList } from './ContactList.styled';
+
 export default function ContactsList({
   contacts,
   value,
@@ -7,10 +9,10 @@ export default function ContactsList({
   deleteContact,
 }) {
   return (
-    <div>
-      <h1>Contacts</h1>
-      <input type="text" value={value} onChange={onChange} />
-      <ul>
+    <>
+      <TitleList>Contacts</TitleList>
+      <SearchInput type="text" value={value} onChange={onChange} />
+      <ContactList>
         {contacts.map(({ name, id, number }) => {
           return (
             <ContactItem
@@ -21,8 +23,8 @@ export default function ContactsList({
             />
           );
         })}
-      </ul>
-    </div>
+      </ContactList>
+    </>
   );
 }
 
