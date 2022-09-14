@@ -29,6 +29,7 @@ export default class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
+    Notify.success(`${data.name} added to your contact list`);
   };
 
   changeFilter = e => {
