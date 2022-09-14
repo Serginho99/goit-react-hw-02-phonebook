@@ -14,10 +14,11 @@ export default class AddContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const { name, number } = this.state;
 
     this.props.onSubmit({
-      name: this.state.name,
-      number: this.state.number,
+      name,
+      number,
     });
     this.reset();
     e.currentTarget.reset();
@@ -28,12 +29,13 @@ export default class AddContactForm extends Component {
   };
 
   render() {
+    const { handleChange, handleSubmit } = this;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
         <label htmlFor="">
           Name
           <input
-            onChange={this.handleChange}
+            onChange={handleChange}
             type="text"
             name="name"
             pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -44,7 +46,7 @@ export default class AddContactForm extends Component {
         <label htmlFor="">
           Number
           <input
-            onChange={this.handleChange}
+            onChange={handleChange}
             type="tel"
             name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
